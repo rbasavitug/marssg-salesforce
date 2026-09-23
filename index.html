@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Prospect material: keep it off search engines. GitHub Pages can't set
+     HTTP headers, so this meta tag is what does the work there. -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>MARS Solutions Group × Salesforce</title>
+<style>
+:root{
+  color-scheme: light;
+  --ink:#15202e; --ink2:#475567; --muted:#78859a;
+  --line:#e4e8ee; --line2:#f0f3f7;
+  --bg:#fff; --soft:#f7f9fc;
+  --mars:#d2422d; --mars2:#a72f1e; --marssoft:#fdf1ee;
+  --sf:#0b5cab; --sfsoft:#eef5fd; --cloud:#0d9dda;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:900px;margin:0 auto;padding:0 26px}
+section{padding:50px 0;border-top:1px solid var(--line)}
+h1{font-size:40px;line-height:1.1;letter-spacing:-.028em;margin:0 0 16px}
+h2{font-size:26px;line-height:1.22;letter-spacing:-.02em;margin:0 0 12px}
+h3{font-size:16.5px;margin:0 0 6px;letter-spacing:-.01em}
+p{color:var(--ink2);margin:0 0 13px}
+p:last-child{margin-bottom:0}
+.big{font-size:18px;color:var(--ink2);max-width:64ch}
+.slabel{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:0 0 11px}
+.eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--mars);margin:0 0 14px}
+a{color:var(--sf)}
+
+/* logo bar */
+.logobar{display:flex;align-items:center;gap:22px;padding:26px 0 0}
+.logobar .mark{display:flex;align-items:center}
+.logobar .mars-mark img{height:74px;width:auto;display:block}
+.logobar svg{height:52px;width:auto;display:block}
+.logobar .x{color:#c6cedb;font-size:22px;font-weight:300}
+
+/* hero */
+.hero{padding:34px 0 46px;border-top:none}
+.hero .rule{width:44px;height:3px;background:var(--mars);margin:26px 0 22px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:24px}
+.chip{font-size:11px;letter-spacing:.07em;text-transform:uppercase;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:5px 11px;color:var(--muted)}
+.chip.on{background:var(--sf);border-color:var(--sf);color:#fff}
+.btn{display:inline-block;padding:12px 22px;border-radius:9px;font-weight:700;font-size:14.5px;text-decoration:none;border:1px solid transparent;transition:.15s}
+.btn-p{background:var(--mars);color:#fff}
+.btn-p:hover{background:var(--mars2)}
+.btn-s{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn-s:hover{border-color:var(--muted)}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+
+/* question cards */
+.qs{display:grid;gap:11px;margin-top:22px}
+.q{border:1px solid var(--line);border-left:3px solid var(--mars);border-radius:0 10px 10px 0;padding:17px 20px;background:#fff}
+.q .known{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--muted);margin-bottom:6px}
+.q h3{font-size:16px;color:var(--ink)}
+.q p{font-size:14.4px;margin:0}
+.q .ask{display:block;margin-top:9px;font-size:14.4px;color:var(--mars2);font-weight:600}
+
+/* simple 3-up */
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:11px;margin-top:22px}
+.box{border:1px solid var(--line);border-radius:10px;padding:18px 19px;background:#fff}
+.box .t{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:var(--sf);margin-bottom:8px}
+.box h3{font-size:15.5px}
+.box p{font-size:14px;margin:0}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:22px}
+.stat{background:#fff;padding:19px 17px}
+.stat .n{font-size:32px;font-weight:700;letter-spacing:-.035em;color:var(--sf);line-height:1.05}
+.stat .l{font-size:13.5px;font-weight:600;color:var(--ink);margin-top:8px;line-height:1.4}
+.stat .s{font-size:11.5px;color:var(--muted);margin-top:8px;line-height:1.5}
+.stat .s a{color:var(--sf);text-decoration:none}
+.stat .s a:hover{text-decoration:underline}
+
+/* calculator */
+.calc{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:24px;background:#fff}
+.calc .inputs{padding:24px 26px;background:var(--soft);border-bottom:1px solid var(--line)}
+.field{margin-bottom:20px}
+.field:last-child{margin-bottom:0}
+.field .top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:9px}
+.field label{font-size:14.2px;font-weight:600;color:var(--ink)}
+.field .val{font-size:17px;font-weight:700;color:var(--mars);font-variant-numeric:tabular-nums;white-space:nowrap}
+.field .hint{font-size:12.2px;color:var(--muted);margin-top:7px;line-height:1.5}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:3px;
+  background:#dce2ea;outline:none;margin:0;cursor:pointer
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;
+  background:var(--mars);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.28);cursor:pointer
+}
+input[type=range]::-moz-range-thumb{
+  width:20px;height:20px;border-radius:50%;background:var(--mars);
+  border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.28);cursor:pointer;border-color:#fff
+}
+.outs{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--line)}
+.out{background:#fff;padding:22px 20px}
+.out .on{font-size:30px;font-weight:700;letter-spacing:-.035em;color:var(--sf);line-height:1.05;font-variant-numeric:tabular-nums}
+.out .ol{font-size:12.5px;font-weight:600;color:var(--ink);margin-top:8px;line-height:1.4}
+.out .od{font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.45}
+.assume{padding:16px 22px;background:var(--soft);border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.6}
+.assume strong{color:var(--ink2)}
+
+/* stories */
+.stories{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:11px;margin-top:22px}
+.story{border:1px solid var(--line);border-radius:11px;padding:19px;display:flex;flex-direction:column}
+.story .cat{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted);margin-bottom:9px}
+.story h3{font-size:17px;margin-bottom:10px}
+.story .metric{font-size:24px;font-weight:700;color:var(--sf);letter-spacing:-.03em;line-height:1.1}
+.story .ml{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:5px 0 11px}
+.story p{font-size:13.6px;margin:0 0 13px;flex:1}
+.story a{font-size:13px;font-weight:600;color:var(--sf);text-decoration:none}
+.story a:hover{text-decoration:underline}
+
+/* plan */
+.plan{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:11px;overflow:hidden;margin-top:22px}
+.ph{background:#fff;padding:18px 22px;display:flex;gap:18px;align-items:flex-start}
+.ph .when{flex:0 0 34px;font-size:13px;font-weight:700;color:var(--mars);margin-top:2px;font-variant-numeric:tabular-nums}
+.ph h3{font-size:15.5px;margin-bottom:5px}
+.ph p{font-size:14px;margin:0}
+.ph .owners{display:block;margin-top:8px;font-size:12.5px;color:var(--muted)}
+.ph .owners b{color:var(--ink2)}
+.defn{margin-top:20px;padding:17px 20px;border:1px solid #cfe0f2;background:var(--sfsoft);border-radius:10px;font-size:14.4px;color:#1d3c5c}
+.clarify{margin-top:22px;padding:18px 22px;border:1px solid #cfe0f2;background:var(--sfsoft);border-radius:10px}
+.clarify p{font-size:14.6px;color:#1d3c5c;margin:0 0 11px}
+.clarify p:last-child{margin-bottom:0}
+.clarify strong{color:#0b3a66}
+
+/* resources */
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:10px;margin-top:22px}
+.rl{border:1px solid var(--line);border-radius:10px;padding:15px 17px;text-decoration:none;display:block;transition:.15s;background:#fff}
+.rl:hover{border-color:var(--sf);background:var(--sfsoft)}
+.rl .k{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted);margin-bottom:6px}
+.rl .n{font-size:14.5px;font-weight:650;color:var(--ink);line-height:1.35}
+
+/* cta */
+.cta{background:#15202e;color:#fff;border-radius:12px;padding:32px 30px;margin-top:8px}
+.cta h2{color:#fff;margin-bottom:12px}
+.cta p{color:#a9b5c6;font-size:15.2px}
+.cta .btn-p{margin-top:20px}
+.cta .who{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.16);font-size:13.5px;color:#a9b5c6}
+.cta .who strong{color:#fff;display:block;font-size:14.5px;margin-bottom:2px}
+
+footer{padding:26px 0 44px;font-size:12.2px;color:var(--muted);line-height:1.65}
+footer a{color:var(--sf);text-decoration:none}
+footer a:hover{text-decoration:underline}
+.srcs{margin-top:14px}
+.disclaimer{
+  padding:15px 18px;border:1px solid var(--line);background:var(--soft);
+  border-radius:9px;font-size:12.5px;color:var(--ink2);line-height:1.6
+}
+.disclaimer strong{color:var(--ink)}
+
+@media(max-width:620px){
+  h1{font-size:29px}
+  h2{font-size:22px}
+  .ph{flex-direction:column;gap:6px}
+  .ph .when{flex:none}
+  .logobar{gap:14px}
+  .logobar .mars-mark img{height:52px}
+  .logobar svg{height:38px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- LOGOS -->
+<div class="logobar">
+  <span class="mark mars-mark">
+    <img src="data:image/png;base64,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" alt="MARS Solutions Group">
+  </span>
+  <span class="x">×</span>
+  <span class="mark">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 64" role="img" aria-label="Salesforce"><defs><style>.cls-1,.cls-2{fill:#fff}.cls-3{fill:#0d9dda}.cls-2{fill-rule:evenodd}</style></defs><path class="cls-3" d="m38.33,6.98c2.95-3.07,7.05-4.98,11.59-4.98,6.04,0,11.3,3.37,14.11,8.36,2.44-1.09,5.14-1.7,7.97-1.7,10.89,0,19.71,8.9,19.71,19.89s-8.83,19.89-19.71,19.89c-1.33,0-2.63-.13-3.88-.39-2.47,4.4-7.18,7.38-12.58,7.38-2.26,0-4.4-.52-6.3-1.45-2.5,5.89-8.34,10.02-15.13,10.02s-13.11-4.48-15.43-10.76c-1.01.21-2.06.33-3.14.33-8.43,0-15.26-6.9-15.26-15.42,0-5.71,3.07-10.69,7.63-13.36-.94-2.16-1.46-4.55-1.46-7.05C6.45,7.94,14.4,0,24.21,0,29.97,0,35.09,2.74,38.33,6.98Z"/><g><path class="cls-1" d="m13.53,33.19c-.06.15.02.18.04.21.17.12.35.21.52.32.93.49,1.81.64,2.73.64,1.88,0,3.04-1,3.04-2.6v-.03c0-1.48-1.32-2.02-2.55-2.41l-.16-.05c-.93-.3-1.73-.56-1.73-1.18v-.03c0-.52.47-.91,1.2-.91.81,0,1.77.27,2.38.61,0,0,.18.12.25-.06.04-.1.35-.94.38-1.03.04-.1-.03-.17-.09-.21-.71-.43-1.68-.72-2.69-.72h-.19c-1.72,0-2.92,1.04-2.92,2.52v.03c0,1.57,1.32,2.07,2.56,2.43l.2.06c.9.28,1.68.52,1.68,1.15v.03c0,.58-.51,1.01-1.32,1.01-.32,0-1.33,0-2.42-.7-.13-.08-.21-.13-.31-.19-.05-.03-.19-.09-.25.08l-.37,1.03Z"/><path class="cls-1" d="m40.98,33.19c-.06.15.02.18.04.21.17.12.35.21.52.32.93.49,1.81.64,2.73.64,1.88,0,3.04-1,3.04-2.6v-.03c0-1.48-1.31-2.02-2.55-2.41l-.16-.05c-.93-.3-1.73-.56-1.73-1.18v-.03c0-.52.47-.91,1.2-.91.81,0,1.77.27,2.38.61,0,0,.18.12.25-.06.04-.1.35-.94.38-1.03.04-.1-.03-.17-.09-.21-.71-.43-1.68-.72-2.69-.72h-.19c-1.72,0-2.92,1.04-2.92,2.52v.03c0,1.57,1.32,2.07,2.56,2.43l.2.06c.9.28,1.68.52,1.68,1.15v.03c0,.58-.51,1.01-1.32,1.01-.32,0-1.33,0-2.42-.7-.13-.08-.21-.13-.31-.19-.03-.02-.19-.08-.25.08l-.37,1.03Z"/><path class="cls-1" d="m61.29,28.36c-.15-.52-.39-.98-.71-1.36-.32-.38-.72-.69-1.2-.91-.48-.22-1.04-.34-1.68-.34s-1.2.11-1.68.34c-.48.22-.88.53-1.2.91-.32.38-.56.84-.71,1.36-.15.52-.23,1.08-.23,1.68s.08,1.17.23,1.68c.15.52.39.98.71,1.36.32.38.73.69,1.2.91.48.22,1.04.33,1.68.33s1.2-.11,1.68-.33c.48-.22.88-.52,1.2-.91.32-.38.56-.84.71-1.36.15-.52.23-1.08.23-1.68s-.08-1.17-.23-1.68m-1.57,1.68c0,.91-.17,1.62-.5,2.13-.33.5-.83.74-1.52.74s-1.19-.24-1.52-.74c-.33-.51-.5-1.22-.5-2.13s.17-1.62.49-2.12c.33-.5.82-.74,1.52-.74s1.19.24,1.52.74c.33.5.5,1.21.5,2.12"/><path class="cls-2" d="m74.15,32.67c-.05-.15-.2-.09-.2-.09-.23.09-.47.17-.73.21-.26.04-.55.06-.86.06-.76,0-1.36-.23-1.79-.67-.43-.45-.68-1.17-.67-2.14,0-.89.22-1.55.6-2.06.38-.51.96-.76,1.74-.76.65,0,1.14.07,1.66.24,0,0,.12.05.18-.11.14-.38.24-.65.39-1.07.04-.12-.06-.17-.1-.18-.2-.08-.68-.21-1.04-.26-.34-.05-.73-.08-1.17-.08-.66,0-1.24.11-1.75.34-.5.22-.92.53-1.26.91-.34.38-.59.84-.76,1.36-.17.52-.26,1.08-.26,1.69,0,1.3.35,2.35,1.04,3.12.69.77,1.73,1.16,3.09,1.16.8,0,1.62-.16,2.22-.4,0,0,.11-.05.06-.19l-.38-1.06Z"/><path class="cls-2" d="m82.16,28.07c-.13-.5-.46-1.01-.68-1.24-.34-.37-.67-.62-1.01-.77-.43-.19-.95-.31-1.52-.31-.66,0-1.26.11-1.75.34-.49.23-.9.54-1.22.93-.32.39-.56.85-.72,1.38-.15.52-.23,1.09-.23,1.69s.08,1.18.24,1.69c.16.52.42.97.77,1.35.35.38.8.68,1.33.88.53.21,1.18.31,1.92.31,1.53,0,2.34-.35,2.67-.53.06-.03.11-.09.05-.25l-.35-.97c-.05-.14-.2-.09-.2-.09-.38.14-.92.39-2.18.39-.82,0-1.43-.24-1.81-.62-.39-.39-.58-.96-.62-1.76h5.3s.14,0,.15-.13c0-.06.18-1.09-.16-2.28Zm-5.27,1.11c.07-.5.21-.92.43-1.25.32-.5.82-.77,1.52-.77s1.15.27,1.48.77c.22.33.31.76.35,1.25h-3.78Z"/><path class="cls-2" d="m39.72,28.07c-.13-.5-.46-1.01-.68-1.24-.34-.37-.67-.62-1.01-.77-.43-.19-.95-.31-1.52-.31-.66,0-1.26.11-1.75.34-.49.23-.9.54-1.22.93-.32.39-.56.85-.72,1.38-.15.52-.23,1.09-.23,1.69s.08,1.18.24,1.69c.16.52.42.97.77,1.35.35.38.8.68,1.33.88.53.21,1.18.31,1.92.31,1.53,0,2.34-.35,2.67-.53.06-.03.11-.09.04-.25l-.35-.97c-.05-.14-.2-.09-.2-.09-.38.14-.92.39-2.18.39-.82,0-1.43-.24-1.81-.62-.39-.39-.58-.96-.62-1.76h5.3s.14,0,.15-.13c0-.06.18-1.09-.16-2.28Zm-5.27,1.11c.07-.5.21-.92.43-1.25.33-.5.82-.77,1.52-.77s1.15.27,1.49.77c.22.33.31.76.35,1.25h-3.78Z"/><path class="cls-1" d="m25.1,28.92c-.22-.02-.49-.02-.83-.02-.45,0-.89.06-1.31.17-.41.11-.79.28-1.11.51-.32.23-.58.52-.77.87-.19.35-.28.76-.28,1.22s.08.88.24,1.21c.16.33.39.61.69.83.29.21.66.37,1.08.47.42.09.89.14,1.4.14.54,0,1.09-.05,1.61-.13.52-.09,1.16-.22,1.33-.26.18-.04.37-.09.37-.09.13-.03.12-.17.12-.17v-4.85c0-1.06-.29-1.85-.85-2.34-.56-.49-1.37-.73-2.43-.73-.4,0-1.04.05-1.42.13,0,0-1.16.22-1.63.6,0,0-.1.06-.05.21l.38,1.01c.05.13.17.09.17.09,0,0,.04-.02.09-.04,1.02-.55,2.31-.54,2.31-.54.57,0,1.01.12,1.31.34.29.22.44.56.44,1.26v.22c-.45-.07-.87-.1-.87-.1Zm-2.11,3.72c-.21-.17-.24-.21-.31-.31-.1-.16-.16-.39-.16-.69,0-.47.15-.8.47-1.03,0,0,.46-.4,1.54-.38.76,0,1.44.12,1.44.12v2.41h0s-.67.14-1.43.19c-1.08.06-1.56-.31-1.55-.31Z"/><path class="cls-2" d="m67.84,26.19c.04-.12-.04-.18-.08-.19-.09-.03-.54-.13-.89-.15-.67-.04-1.04.07-1.37.22-.33.15-.69.39-.9.66v-.65c0-.09-.06-.16-.15-.16h-1.36c-.09,0-.15.07-.15.16v7.91c0,.09.07.16.16.16h1.39c.09,0,.16-.07.16-.16v-3.95c0-.53.06-1.06.18-1.39.11-.33.27-.59.46-.78.19-.19.41-.32.65-.39.25-.08.52-.1.71-.1.28,0,.58.07.58.07.1.01.16-.05.19-.14.09-.24.35-.97.4-1.11Z"/><path class="cls-2" d="m54.77,22.53c-.17-.05-.32-.09-.52-.12-.2-.04-.45-.06-.72-.06-.96,0-1.71.27-2.24.81-.53.53-.89,1.34-1.06,2.4l-.06.36h-1.2s-.15,0-.18.15l-.2,1.1c-.01.11.03.17.17.17h1.17l-1.19,6.63c-.09.53-.2.97-.32,1.31-.12.33-.23.57-.37.75-.14.17-.26.3-.48.37-.18.06-.39.09-.62.09-.13,0-.3-.02-.43-.05-.13-.02-.19-.05-.29-.09,0,0-.14-.05-.19.09-.04.11-.36.97-.39,1.08-.04.1.02.19.08.21.16.06.27.09.48.14.29.07.54.07.78.07.49,0,.93-.07,1.3-.2.37-.13.69-.37.98-.68.31-.34.5-.7.69-1.19.18-.48.34-1.08.47-1.78l1.19-6.76h1.75s.15,0,.18-.15l.2-1.1c.01-.11-.03-.17-.17-.17h-1.69s.09-.63.28-1.2c.08-.24.24-.43.37-.57.13-.13.28-.22.44-.28.17-.05.36-.08.57-.08.16,0,.32.02.44.04.16.03.23.05.27.07.17.05.2,0,.23-.08l.41-1.11c.04-.12-.06-.17-.1-.18Z"/><path class="cls-2" d="m31.1,33.99c0,.09-.06.16-.15.16h-1.41c-.09,0-.15-.07-.15-.16v-11.31c0-.09.06-.16.15-.16h1.41c.09,0,.15.07.15.16v11.31Z"/></g></svg>
+  </span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="rule"></div>
+  <h1>Unify the client side of your business — so your team spends its time placing great people, not chasing data.</h1>
+  <p class="big">MARS already runs a world-class talent engine. This page is a starting point for a conversation about the other half: the client relationships, renewals and revenue that sit around it — and whether bringing them onto one platform is worth your time to explore.</p>
+  <p class="big" style="margin-top:12px">Nothing here is a diagnosis. It's a set of questions we'd want to answer together, plus what similar firms have achieved once they did.</p>
+  <div class="chips">
+    <span class="chip on">Sales Cloud</span>
+    <span class="chip on">Agentforce</span>
+    <span class="chip">Data 360</span>
+    <span class="chip">Slack</span>
+  </div>
+  <div class="cta-row">
+    <a class="btn btn-p" href="https://calendar.app.google/RTeHD7w2ckrU1fKb6" target="_blank" rel="noopener">Book 30 minutes</a>
+    <a class="btn btn-s" href="#calc">Try the calculator</a>
+  </div>
+</section>
+
+<!-- WHERE MARS IS TODAY -->
+<section id="today">
+  <p class="slabel">Where MARS is today</p>
+  <h2>A few things we think we know — and the questions behind them</h2>
+  <p class="big">We'd rather ask than assume. Correct us where we're wrong.</p>
+
+  <div class="qs">
+    <div class="q">
+      <div class="known">What we understand</div>
+      <h3>Ceipal runs your ATS</h3>
+      <p>Requisitions, candidates, submittals, vendor and MSP workflow.</p>
+      <span class="ask">Is Ceipal still your system of record for talent — and is it working well for your delivery team?</span>
+    </div>
+    <div class="q">
+      <div class="known">What we understand</div>
+      <h3>HubSpot runs marketing — and sales?</h3>
+      <p>We can see HubSpot in use on your site. What we can't tell from outside is how far it reaches.</p>
+      <span class="ask">Is HubSpot marketing-only, or is your client-facing sales team working in it too?</span>
+    </div>
+    <div class="q">
+      <div class="known">The open question</div>
+      <h3>Where does the full client picture live?</h3>
+      <p>Across TalentFlex, Returnship, Ovation, MARS Healthcare and MARS Orbit — plus enterprise accounts that buy more than one.</p>
+      <span class="ask">Where do you go to see which client bought what, what's been delivered, what's up for renewal, and where the whitespace is?</span>
+    </div>
+    <div class="q">
+      <div class="known">Timing</div>
+      <h3>Your HubSpot agreement</h3>
+      <p>We understood earlier this year that MARS had moved to a shorter-term arrangement.</p>
+      <span class="ask">Is that still the case — and when does the current term end? That shapes whether this is worth looking at now or later.</span>
+    </div>
+  </div>
+</section>
+
+<!-- THE OPPORTUNITY -->
+<section>
+  <p class="slabel">The opportunity</p>
+  <h2>What staffing firms said was getting in their way</h2>
+  <p class="big">Not claims about MARS. These are the problems three staffing and workforce businesses described in their own words before they moved onto Salesforce. Tell us which, if any, sound familiar.</p>
+
+  <div class="three">
+    <div class="box">
+      <div class="t">No source of truth</div>
+      <h3>Two systems, and nobody could say which one was right</h3>
+      <p>Call notes and client history sitting in one tool, deals and activities in another — both tracking the same thing, neither authoritative. Add the swivel-chair cost of switching between them all day, and the team spends its energy reconciling systems instead of working accounts.</p>
+    </div>
+    <div class="box">
+      <div class="t">Context lost at handoff</div>
+      <h3>The detail that makes a placement stick never makes it down the line</h3>
+      <p>An account manager works through dozens of intake questions on a client call while typing notes on the side. Something always slips. By the time the role reaches a recruiter, the subtle signals — culture, the real must-haves, what the client actually meant — have already faded.</p>
+    </div>
+    <div class="box">
+      <div class="t">Running on spreadsheets</div>
+      <h3>The revenue picture lives in a file someone has to remember to update</h3>
+      <p>Lead conversion in a spreadsheet, pipeline in someone's head, renewals on whoever's calendar. It holds together until volume climbs or a person leaves — and it can't be reported on, forecast from, or handed to AI.</p>
+    </div>
+  </div>
+
+  <p style="margin-top:20px">These are common challenges we hear from staffing and workforce businesses. The proof is in the pudding — <a href="#proof">see the results</a> from firms that now run on Salesforce.</p>
+
+  <div class="clarify">
+    <p><strong>To be clear — this isn't an ATS replacement.</strong> Salesforce doesn't have a native applicant tracking product, so Ceipal isn't something we'd be displacing or asking you to rip out.</p>
+  </div>
+</section>
+
+<!-- ROI -->
+<section id="calc">
+  <p class="slabel">Return on investment</p>
+  <h2>What firms like yours see after consolidating onto Sales Cloud</h2>
+  <p class="big">Here's what others have achieved — and a calculator so you can see what it might look like with your numbers instead of ours.</p>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="n">30%</div>
+      <div class="l">More revenue, on average, reported by Sales Cloud customers</div>
+      <div class="s"><a href="https://www.salesforce.com/sales/" target="_blank" rel="noopener">FY26 Salesforce Customer Success Metrics</a></div>
+    </div>
+    <div class="stat">
+      <div class="n">25 hrs</div>
+      <div class="l">Returned to each seller per week to spend selling</div>
+      <div class="s"><a href="https://www.salesforce.com/sales/" target="_blank" rel="noopener">FY26 Salesforce Customer Success Metrics</a></div>
+    </div>
+    <div class="stat">
+      <div class="n">3.7×</div>
+      <div class="l">More likely to hit quota when sellers work alongside AI tools</div>
+      <div class="s"><a href="https://www.gartner.com/en/newsroom/press-releases/2024-09-16-gartner-sales-survey-reveals-sellers-who-partner-with-ai-re-three-point-seven-times-more-likely-to-meet-quota" target="_blank" rel="noopener">Gartner Sales Survey, 2024</a></div>
+    </div>
+  </div>
+
+  <div class="calc">
+    <div class="inputs">
+      <div class="field">
+        <div class="top"><label for="s1">Client-facing sellers and account managers</label><span class="val" id="v1">10</span></div>
+        <input type="range" id="s1" min="1" max="40" step="1" value="10">
+        <div class="hint">People who own client relationships — not recruiters working in Ceipal.</div>
+      </div>
+      <div class="field">
+        <div class="top"><label for="s2">Hours each loses per week to manual and duplicate data entry</label><span class="val" id="v2">6 hrs</span></div>
+        <input type="range" id="s2" min="1" max="25" step="1" value="6">
+        <div class="hint">Benchmark is 25 hrs/week returned. We've defaulted well below it — move it to whatever feels true.</div>
+      </div>
+      <div class="field">
+        <div class="top"><label for="s3">Annual new and expansion revenue</label><span class="val" id="v3">$4.0M</span></div>
+        <input type="range" id="s3" min="500000" max="15000000" step="250000" value="4000000">
+        <div class="hint">Not total revenue — just the part a CRM influences.</div>
+      </div>
+      <div class="field">
+        <div class="top"><label for="s4">Revenue lift you'd consider credible</label><span class="val" id="v4">10%</span></div>
+        <input type="range" id="s4" min="0" max="30" step="1" value="10">
+        <div class="hint">The customer-reported average is 30%. Set your own level of conviction.</div>
+      </div>
+    </div>
+
+    <div class="outs">
+      <div class="out">
+        <div class="on" id="o1">2,760</div>
+        <div class="ol">Hours returned per year</div>
+        <div class="od">Across the whole client-facing team</div>
+      </div>
+      <div class="out">
+        <div class="on" id="o2">1.5</div>
+        <div class="ol">Full-time equivalents</div>
+        <div class="od">Capacity gained without hiring</div>
+      </div>
+      <div class="out">
+        <div class="on" id="o3">$400K</div>
+        <div class="ol">Modeled revenue impact</div>
+        <div class="od">Applied to new and expansion revenue</div>
+      </div>
+    </div>
+
+    <div class="assume">
+      <strong>Assumptions, visible on purpose.</strong> 46 working weeks per year; 1,840 hours per FTE;
+      hours saved counted only for the roles you entered; revenue lift applied only to new and expansion
+      revenue, not the whole book. This is a model, not a forecast or a commitment — and it's only as good
+      as the four numbers you put in.
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section id="proof">
+  <p class="slabel">It's been done before</p>
+  <h2>Workforce and staffing businesses already run this way</h2>
+
+  <div class="stories">
+    <div class="story">
+      <div class="cat">On-demand staffing</div>
+      <h3>Wonolo</h3>
+      <div class="metric">−20%</div>
+      <div class="ml">Handle time</div>
+      <p>Tracks the full journey from prospect identification through to repeat job placement in Sales Cloud, with AI-generated replies cutting handle times and shortening training.</p>
+      <a href="https://www.salesforce.com/customer-stories/wonolo-decreases-handle-time-ai-replies/" target="_blank" rel="noopener">Read the story →</a>
+    </div>
+    <div class="story">
+      <div class="cat">Staffing &amp; recruiting software</div>
+      <h3>Asymbl</h3>
+      <div class="metric">10×</div>
+      <div class="ml">Operates at the scale of</div>
+      <p>Runs its staffing and recruiting business on Salesforce with Agentforce, operating with the reach of a company many times its headcount.</p>
+      <a href="https://www.salesforce.com/customer-stories/asymbl/" target="_blank" rel="noopener">Read the story →</a>
+    </div>
+    <div class="story">
+      <div class="cat">Staffing firm</div>
+      <h3>Boutique Recruiting</h3>
+      <div class="metric">−50%</div>
+      <div class="ml">Job description work</div>
+      <p>Agents write job descriptions, auto-parse 78 intake questions from client calls, and rank the strongest matches out of 130,000 candidates — so recruiters keep their attention on the relationship.</p>
+      <a href="https://www.salesforce.com/customer-stories/boutique-recruiting/" target="_blank" rel="noopener">Read the story →</a>
+    </div>
+  </div>
+</section>
+
+<!-- MUTUAL SUCCESS PLAN -->
+<section>
+  <p class="slabel">How we'd work together</p>
+  <h2>Build a Mutual Success Plan</h2>
+  <p class="big">A shared roadmap we build together, laying out the key milestones, owners and dates on both sides — so we're aligned on exactly what needs to happen, and nothing falls through the cracks along the way.</p>
+
+  <div class="plan">
+    <div class="ph">
+      <div class="when">01</div>
+      <div>
+        <h3>Intro</h3>
+        <p>A short conversation to answer the questions on this page and hear where we've got MARS wrong.</p>
+      </div>
+    </div>
+    <div class="ph">
+      <div class="when">02</div>
+      <div>
+        <h3>Discovery</h3>
+        <p>Understand how the client side of the business actually runs today, across your service lines and alongside Ceipal.</p>
+      </div>
+    </div>
+    <div class="ph">
+      <div class="when">03</div>
+      <div>
+        <h3>Custom Demo</h3>
+        <p>Salesforce shown against MARS scenarios rather than a generic product tour.</p>
+      </div>
+    </div>
+    <div class="ph">
+      <div class="when">04</div>
+      <div>
+        <h3>Investment Review</h3>
+        <p>Scope, value and commercials — with the model built on your numbers, not ours.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="defn">Typically an evaluation moves through these phases, though they're often consolidated depending on complexity — and the plan itself changes as we learn more. Nothing here is fixed.</div>
+</section>
+
+<!-- CTA -->
+<section style="border-top:none;padding-top:22px">
+  <div class="cta">
+    <p class="eyebrow" style="color:#f0937f">Next step</p>
+    <h2>30 minutes to find out whether this is worth your time</h2>
+    <p>Not a demo. A conversation to answer the questions on this page, hear where we've got MARS wrong, and decide together whether there's anything here worth pursuing.</p>
+    <a class="btn btn-p" href="https://calendar.app.google/RTeHD7w2ckrU1fKb6" target="_blank" rel="noopener">Book a time</a>
+    <div class="who">
+      <strong>Reyna Basa Vitug</strong>
+      Account Executive, Salesforce
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES (APPENDIX) -->
+<section>
+  <p class="slabel">Appendix</p>
+  <h2>Resources</h2>
+  <p class="big">Background reading, if it's useful.</p>
+  <div class="res">
+    <a class="rl" href="https://www.salesforce.com/sales/state-of-sales/" target="_blank" rel="noopener">
+      <div class="k">Research</div><div class="n">State of Sales, 7th Edition — 4,000+ sales professionals</div></a>
+    <a class="rl" href="https://www.salesforce.com/sales/cloud/" target="_blank" rel="noopener">
+      <div class="k">Product</div><div class="n">Sales Cloud overview</div></a>
+    <a class="rl" href="https://www.salesforce.com/sales/ai-sales-agent/" target="_blank" rel="noopener">
+      <div class="k">Product</div><div class="n">AI sales agents across the sales cycle</div></a>
+    <a class="rl" href="https://www.salesforce.com/sales/resources/gartner-mq-crm-sales-platforms-2026/" target="_blank" rel="noopener">
+      <div class="k">Analyst</div><div class="n">2026 Gartner® Magic Quadrant™ for CRM Sales Platforms</div></a>
+    <a class="rl" href="https://www.salesforce.com/sales/resources/sales-leaders-ai-growth-playbook/" target="_blank" rel="noopener">
+      <div class="k">Guide</div><div class="n">The Sales Leader's Playbook to Driving Growth with AI</div></a>
+  </div>
+</section>
+
+<footer>
+  <div class="disclaimer">
+    <strong>Prepared by Reyna Basa Vitug</strong>, Account Executive at Salesforce, for MARS Solutions Group · September 2026.
+    This is a personal working document put together for this conversation — <strong>not an official Salesforce publication</strong>,
+    and not a quote, proposal or commitment. Product capabilities, scope, timing and pricing are indicative only and subject to
+    confirmation. Views and framing are my own.
+  </div>
+  <div class="srcs">
+    Company details from <a href="https://www.marssg.com" target="_blank" rel="noopener">marssg.com</a>.
+    Benchmarks from the <a href="https://www.salesforce.com/sales/state-of-sales/sales-statistics/" target="_blank" rel="noopener">Salesforce State of Sales, 7th Edition (2026)</a>,
+    the FY26 Salesforce Customer Success Metrics Global Report as published on <a href="https://www.salesforce.com/sales/" target="_blank" rel="noopener">salesforce.com/sales</a>,
+    and the <a href="https://www.gartner.com/en/newsroom/press-releases/2024-09-16-gartner-sales-survey-reveals-sellers-who-partner-with-ai-re-three-point-seven-times-more-likely-to-meet-quota" target="_blank" rel="noopener">Gartner Sales Survey, 2024</a>.
+    Calculator outputs are illustrative models based on inputs you provide — not forecasts, guarantees or commitments; individual results vary.
+    Gartner and Magic Quadrant are registered trademarks of Gartner, Inc. HubSpot and Ceipal are trademarks of their respective owners.
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var s1=document.getElementById('s1'), s2=document.getElementById('s2'),
+      s3=document.getElementById('s3'), s4=document.getElementById('s4');
+
+  function money(n){
+    if(n>=1000000) return '$'+(n/1000000).toFixed(n%1000000===0?1:1)+'M';
+    if(n>=1000)    return '$'+Math.round(n/1000)+'K';
+    return '$'+Math.round(n);
+  }
+  function commas(n){ return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
+  function calc(){
+    var sellers = +s1.value, hrs = +s2.value, rev = +s3.value, lift = +s4.value;
+
+    document.getElementById('v1').textContent = sellers;
+    document.getElementById('v2').textContent = hrs + ' hr' + (hrs===1?'':'s');
+    document.getElementById('v3').textContent = money(rev);
+    document.getElementById('v4').textContent = lift + '%';
+
+    var hoursBack = sellers * hrs * 46;
+    var fte = hoursBack / 1840;
+    var impact = rev * (lift/100);
+
+    document.getElementById('o1').textContent = commas(hoursBack);
+    document.getElementById('o2').textContent = fte.toFixed(1);
+    document.getElementById('o3').textContent = money(impact);
+  }
+
+  [s1,s2,s3,s4].forEach(function(el){
+    el.addEventListener('input', calc);
+    el.addEventListener('change', calc);
+  });
+  calc();
+})();
+</script>
+
+</body>
+</html>
